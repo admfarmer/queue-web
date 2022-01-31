@@ -251,6 +251,7 @@ export class MainComponent implements OnInit {
     if (this.cardCid) {
       await this.getPatient();
       await this.getNhso(this.cardCid);
+      await this.insertVaccine(this.cardCid);
       await this.getVaccine(this.cardCid);
 
     } else {
@@ -444,10 +445,24 @@ export class MainComponent implements OnInit {
     // this.doRegister(priority.priority_id, this.selectedVisit);
   }
 
-  async getVaccine(cid:any){
+  async insertVaccine(cid:any){
+ 
     try {
+      const rs_inserVac: any = await this.kioskService.insertVac(cid);
+      console.log(rs_inserVac);
+  
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  async getVaccine(cid:any){
+
+    try {  
       const rs: any = await this.kioskService.selectVac(cid);
-      console.log(rs);
+
+      // console.log(rs);
       if(rs.info.result){
         let info = rs.info.result;
         if(info.vaccine_history[0]){

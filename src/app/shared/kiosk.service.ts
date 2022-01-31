@@ -8,7 +8,7 @@ export class KioskService {
 
   token: any;
   httpOptions: any;
-  constructor(@Inject('API_URL') private apiUrl: string, private httpClient: HttpClient) {
+  constructor(@Inject('API_URL') private apiUrl: string,@Inject('API_URL_REPORT') private apiUrlReport: string, private httpClient: HttpClient) {
     this.token = sessionStorage.getItem('token');
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -175,8 +175,7 @@ export class KioskService {
   }
 
   async selectVac(cid: any) {
-    console.log(cid);
-
+    // console.log(cid);
     const _url = `http://203.157.166.100/api/ubonprompt/ImmunizationTarget/person?cid=${cid}`;
     let _httpOptions = {};
       _httpOptions = {
@@ -186,7 +185,22 @@ export class KioskService {
         })
       };
  
+    return this.httpClient.get(_url,_httpOptions).toPromise();
+  }
 
+  async insertVac(cid: any) {
+    console.log(this.apiUrlReport);
+    
+    // console.log(cid);
+    const _url = `${this.apiUrlReport}/covid_vaccine/mophic-lab/${cid}`;
+    let _httpOptions = {};
+      _httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer ' + token
+        })
+      };
+ 
     return this.httpClient.get(_url,_httpOptions).toPromise();
   }
 }
