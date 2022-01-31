@@ -40,20 +40,18 @@
         <div class="col-4">
           <div class='gold'>
             <h1>ข้อมูลโรงพยาบาล</h1>
-
             <p id="txtHISHn"><span>HN </span> : {{hisHn || '-'}}</p>
             <p id="txtHISPttype"><span>สิทธิการรักษา </span> : {{hisPttype || '-'}}</p>
             <span>ชื่อ - สกุล</span>
             <p id="txtHISFullname">{{hisFullName || '-'}}</p>
             <span>วันเกิด</span>
             <p id="txtHISBirthdate">{{hisBirthDate || '-'}}</p>
-            <h4 style="text-align: right">**จากฐานข้อมูลในโรงพยาบาล</h4>
+            <!-- <h4 style="text-align: right">**จากฐานข้อมูลในโรงพยาบาล</h4> -->
           </div>
         </div>
         <div class="col-4">
           <div class='silver'>
             <h1>ข้อมูลสิทธิการรักษา</h1>
-
             <span>สิทธิการรักษา</span>
             <p id="txtNHSORight">{{rightName || '-'}}</p>
             <span>วันที่เริ่มใช้สิทธิ์</span>
@@ -64,6 +62,41 @@
           </div>
         </div>
       </div>
+      <div style="margin: 20px;"></div>
+    <div class="row">
+      <div class="col-5">
+        <div class='silver'>
+          <h1>ข้อมูลได้รับวัคซีน</h1>
+          <span>เข็มที่ 1</span>
+          <p id="vaccine_history_1">{{vaccine_history_1 || '-'}}</p>
+          <span>เข็มที่ 2</span>
+          <p id="vaccine_history_2">{{vaccine_history_2 || '-'}}</p>
+          <span>เข็มที่ 3</span>
+          <p id="vaccine_history_3">{{vaccine_history_3 || '-'}}</p>
+          <span>เข็มที่ 4</span>
+          <p id="vaccine_history_4">{{vaccine_history_4 || '-'}}</p>
+          <!-- <h4 style="text-align: right">**สำนักงานหลักประกันสุขภาพแห่งชาติ</h4> -->
+        </div>
+      </div>
+      <div class="col-2">
+
+      </div>  
+      <div class="col-5">
+        <div class='silver'>
+          <h1>ข้อมูลตรวจ Lab ล่าสุด</h1>
+          <span>lab_name</span>
+          <p id="lab_name">{{lab_name || '-'}}</p>
+          <span>lab_result</span>
+          <p id="lab_result">{{lab_result || '-'}}</p>
+          <span>report_datetime</span>
+          <p id="report_datetime">{{report_datetime || '-'}} * ค.ศ.</p>
+          <span>hospital_name</span>
+          <p id="hospital_name">{{hospital_name || '-'}}</p>
+        </div>
+      </div>  
+      <!-- </div> -->
+    </div>
+
       <div style="margin: 20px;"></div>
 
       <button type="button" class="button-black" style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"

@@ -174,4 +174,19 @@ export class KioskService {
     return this.httpClient.post(_url, data, _httpOptions).toPromise();
   }
 
+  async selectVac(cid: any) {
+    console.log(cid);
+
+    const _url = `http://203.157.166.100/api/ubonprompt/ImmunizationTarget/person?cid=${cid}`;
+    let _httpOptions = {};
+      _httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer ' + token
+        })
+      };
+ 
+
+    return this.httpClient.get(_url,_httpOptions).toPromise();
+  }
 }

@@ -52,6 +52,15 @@ export class MainComponent implements OnInit {
   urlSendAPIGET: any;
   urlSendAPIPOST: any;
 
+  vaccine_history_1: any;
+  vaccine_history_2: any;
+  vaccine_history_3: any;
+  vaccine_history_4: any;
+
+  lab_name: any;
+  lab_result: any;
+  report_datetime: any;
+  hospital_name: any;
 
   @ViewChild(CountdownComponent) counter: CountdownComponent;
 
@@ -242,6 +251,7 @@ export class MainComponent implements OnInit {
     if (this.cardCid) {
       await this.getPatient();
       await this.getNhso(this.cardCid);
+      await this.getVaccine(this.cardCid);
 
     } else {
       this.alertService.error('บัตรมีปัญหา กรุณาเสียบใหม่อีกครั้ง', null, 1000);
@@ -285,6 +295,17 @@ export class MainComponent implements OnInit {
     this.tabProfile = true;
     this.btnSelectServicePoint = false;
     this.tabServicePoint = false;
+
+
+    this.vaccine_history_1 = '';
+    this.vaccine_history_2 = '';
+    this.vaccine_history_3 = '';
+    this.vaccine_history_4 = '';
+  
+    this.lab_name = '';
+    this.lab_result = '';
+    this.report_datetime = '';
+    this.hospital_name = '';
   }
 
   async print(queueId) {
@@ -421,6 +442,40 @@ export class MainComponent implements OnInit {
     console.log(priority);
 
     // this.doRegister(priority.priority_id, this.selectedVisit);
+  }
+
+  async getVaccine(cid:any){
+    try {
+      const rs: any = await this.kioskService.selectVac(cid);
+      console.log(rs);
+      if(rs.info.result){
+        let info = rs.info.result;
+        if(info.vaccine_history[0]){
+          this.vaccine_history_1 = info.vaccine_history[0].vaccine_name
+        }
+         if(info.vaccine_history[1]){
+          this.vaccine_history_2 = info.vaccine_history[1].vaccine_name
+        }
+         if(info.vaccine_history[2]){
+          this.vaccine_history_3 = info.vaccine_history[2].vaccine_name
+        }
+         if(info.vaccine_history[3]){
+          this.vaccine_history_4 = info.vaccine_history[3].vaccine_name
+        }
+
+        if(info.lab_test_results[0]){
+          this.lab_name = info.lab_test_results[0].lab_name
+          this.lab_result = info.lab_test_results[0].lab_result
+          this.report_datetime = moment(info.lab_test_results[0].report_datetime).format('DD/MM/YYYY'),
+          this.hospital_name = info.lab_test_results[0].hospital_name
+        }
+
+
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }
