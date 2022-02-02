@@ -449,7 +449,7 @@ export class MainComponent implements OnInit {
  
     try {
       const rs_inserVac: any = await this.kioskService.insertVac(cid);
-      console.log(rs_inserVac);
+      // console.log(rs_inserVac);
   
     } catch (error) {
       console.log(error);
@@ -462,26 +462,33 @@ export class MainComponent implements OnInit {
     try {  
       const rs: any = await this.kioskService.selectVac(cid);
 
-      // console.log(rs);
+      console.log(rs);
       if(rs.info.result){
         let info = rs.info.result;
-        if(info.vaccine_history[0]){
-          this.vaccine_history_1 = info.vaccine_history[0].vaccine_name
-        }
-         if(info.vaccine_history[1]){
-          this.vaccine_history_2 = info.vaccine_history[1].vaccine_name
-        }
-         if(info.vaccine_history[2]){
-          this.vaccine_history_3 = info.vaccine_history[2].vaccine_name
-        }
-         if(info.vaccine_history[3]){
-          this.vaccine_history_4 = info.vaccine_history[3].vaccine_name
+        if(info.vaccine_certificate[0]){
+          if(info.vaccine_certificate[0].vaccination_list[0]){
+            this.vaccine_history_1 = info.vaccine_certificate[0].vaccination_list[0].vaccine_name
+          }
+           if(info.vaccine_certificate[0].vaccination_list[1]){
+            this.vaccine_history_2 = info.vaccine_certificate[0].vaccination_list[1].vaccine_name
+          }
+           if(info.vaccine_certificate[0].vaccination_list[2]){
+            this.vaccine_history_3 = info.vaccine_certificate[0].vaccination_list[2].vaccine_name
+          }
+           if(info.vaccine_certificate[0].vaccination_list[3]){
+            this.vaccine_history_4 = info.vaccine_certificate[0].vaccination_list[3].vaccine_name
+          }
+  
         }
 
         if(info.lab_test_results[0]){
+          let dd:any = moment(info.lab_test_results[0].report_datetime).format('DD');
+          let mm:any = moment(info.lab_test_results[0].report_datetime).format('MM');
+          let y:any = moment(info.lab_test_results[0].report_datetime).format('YYYY');
+          let yyyy:any = +y + 543;
           this.lab_name = info.lab_test_results[0].lab_name
           this.lab_result = info.lab_test_results[0].lab_result
-          this.report_datetime = moment(info.lab_test_results[0].report_datetime).format('DD/MM/YYYY'),
+          this.report_datetime = `${dd}/${mm}/${yyyy}`
           this.hospital_name = info.lab_test_results[0].hospital_name
         }
 
