@@ -57,6 +57,17 @@ export class MainComponent implements OnInit {
   vaccine_history_3: any;
   vaccine_history_4: any;
 
+  vaccine_date_1: any;
+  vaccine_date_2: any;
+  vaccine_date_3: any;
+  vaccine_date_4: any;
+
+  vaccine_place_1: any;
+  vaccine_place_2: any;
+  vaccine_place_3: any;
+  vaccine_place_4: any;
+
+
   lab_name: any;
   lab_result: any;
   report_datetime: any;
@@ -468,15 +479,23 @@ export class MainComponent implements OnInit {
         if(info.vaccine_certificate[0]){
           if(info.vaccine_certificate[0].vaccination_list[0]){
             this.vaccine_history_1 = info.vaccine_certificate[0].vaccination_list[0].vaccine_name
+            this.vaccine_date_1 = info.vaccine_certificate[0].vaccination_list[0].vaccine_date
+            this.vaccine_place_1 = info.vaccine_certificate[0].vaccination_list[0].vaccine_place
           }
            if(info.vaccine_certificate[0].vaccination_list[1]){
             this.vaccine_history_2 = info.vaccine_certificate[0].vaccination_list[1].vaccine_name
+            this.vaccine_date_2 = info.vaccine_certificate[0].vaccination_list[1].vaccine_date
+            this.vaccine_place_2 = info.vaccine_certificate[0].vaccination_list[1].vaccine_place
           }
            if(info.vaccine_certificate[0].vaccination_list[2]){
             this.vaccine_history_3 = info.vaccine_certificate[0].vaccination_list[2].vaccine_name
+            this.vaccine_date_3 = info.vaccine_certificate[0].vaccination_list[2].vaccine_date
+            this.vaccine_place_3 = info.vaccine_certificate[0].vaccination_list[2].vaccine_place
           }
            if(info.vaccine_certificate[0].vaccination_list[3]){
             this.vaccine_history_4 = info.vaccine_certificate[0].vaccination_list[3].vaccine_name
+            this.vaccine_date_4 = info.vaccine_certificate[0].vaccination_list[3].vaccine_date
+            this.vaccine_place_4 = info.vaccine_certificate[0].vaccination_list[3].vaccine_place
           }
   
         }
