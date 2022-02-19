@@ -313,7 +313,17 @@ export class MainComponent implements OnInit {
     this.vaccine_history_2 = '';
     this.vaccine_history_3 = '';
     this.vaccine_history_4 = '';
-  
+ 
+    this.vaccine_date_1 = '';
+    this.vaccine_date_2 = '';
+    this.vaccine_date_3 = '';
+    this.vaccine_date_4 = '';
+
+    this.vaccine_place_1 = '';
+    this.vaccine_place_2 = '';
+    this.vaccine_place_3 = '';
+    this.vaccine_place_4 = '';
+
     this.lab_name = '';
     this.lab_result = '';
     this.report_datetime = '';
