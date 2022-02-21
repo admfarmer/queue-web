@@ -11,105 +11,108 @@
 </div>
 
 <div class="body">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class='silver'>
-          <div style="font-size: 2.5rem; font-weight: bold;" (dblclick)="home()">{{hospname}}</div>
-          <h1>ระบบออกคิวอัตโนมัติ (Q4U)</h1>
-        </div>
-      </div>
-
-    </div>
-
-    <div *ngIf="tabProfile">
-      <div style="margin: 20px;"></div>
+  <div class="card card-inverse-primary">
       <div class="row">
-        <div class="col-4">
+        <div class="col-12">
           <div class='silver'>
-            <h1>ข้อมูลจากบัตรประชาชน</h1>
-            <span>เลขบัตรประชาชน</span>
-            <p id="txtCid">{{cardCid || '-'}}</p>
-            <span>ชื่อ - สกุล</span>
-            <p id="txtFullname">{{cardFullName || '-'}}</p>
-            <span>วันเกิด</span>
-            <p id="txtBirthdate">{{cardBirthDate || '-'}}</p>
-            <h4 style="text-align: right">**ข้อมูลจากเครื่องอ่านบัตรประชาชน</h4>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class='gold'>
-            <h1>ข้อมูลโรงพยาบาล</h1>
-            <p id="txtHISHn"><span>HN </span> : {{hisHn || '-'}}</p>
-            <p id="txtHISPttype"><span>สิทธิการรักษา </span> : {{hisPttype || '-'}}</p>
-            <span>ชื่อ - สกุล</span>
-            <p id="txtHISFullname">{{hisFullName || '-'}}</p>
-            <span>วันเกิด</span>
-            <p id="txtHISBirthdate">{{hisBirthDate || '-'}}</p>
-            <!-- <h4 style="text-align: right">**จากฐานข้อมูลในโรงพยาบาล</h4> -->
-          </div>
-        </div>
-        <div class="col-4">
-          <div class='silver'>
-            <h1>ข้อมูลสิทธิการรักษา</h1>
-            <span>สิทธิการรักษา</span>
-            <p id="txtNHSORight">{{rightName || '-'}}</p>
-            <span>วันที่เริ่มใช้สิทธิ์</span>
-            <p id="txtNHSOStartDart">{{rightStartDate || '-'}}</p>
-            <span>หน่วยบริการหลัก</span>
-            <p id="txtNHSOHmain">{{rightHospital || '-'}}</p>
-            <h4 style="text-align: right">**สำนักงานหลักประกันสุขภาพแห่งชาติ</h4>
+            <div style="font-size: 2.5rem; font-weight: bold;" (dblclick)="home()">{{hospname}}</div>
+            <h1>ระบบออกคิวอัตโนมัติ (Q4U)</h1>
           </div>
         </div>
       </div>
-      <div style="margin: 20px;"></div>
-    <div class="row">
-      <div class="col-7">
-        <div class='silver'>
-          <h1>ข้อมูลได้รับวัคซีน</h1>
-          <span>เข็มที่ 1 </span>
-          <p id="vaccine_history_1">วัคซีน : {{vaccine_history_1 || '-'}} | วันที่ฉีด: {{vaccine_date_1 || '-'}} | สถานที่ : {{vaccine_place_1 || '-'}}</p>
-          <span>เข็มที่ 2</span>
-          <p id="vaccine_history_2">วัคซีน : {{vaccine_history_2 || '-'}} | วันที่ฉีด: {{vaccine_date_2 || '-'}} | สถานที่ : {{vaccine_place_2 || '-'}}</p>
-          <span>เข็มที่ 3</span>
-          <p id="vaccine_history_3">วัคซีน : {{vaccine_history_3 || '-'}} | วันที่ฉีด: {{vaccine_date_3 || '-'}} | สถานที่ : {{vaccine_place_3 || '-'}}</p>
-          <span>เข็มที่ 4</span>
-          <p id="vaccine_history_4">วัคซีน : {{vaccine_history_4 || '-'}} | วันที่ฉีด: {{vaccine_date_4 || '-'}} | สถานที่ : {{vaccine_place_4 || '-'}}</p>
-          <!-- <h4 style="text-align: right">**สำนักงานหลักประกันสุขภาพแห่งชาติ</h4> -->
+
+      <div *ngIf="tabProfile">
+        <div style="margin: 20px;"></div>
+        <div class="row">
+          <div class="col-4">
+            <div class='silver'>
+              <h1>ข้อมูลจากบัตรประชาชน</h1>
+              <span>เลขบัตรประชาชน</span>
+              <p id="txtCid">{{cardCid || '-'}}</p>
+              <span>ชื่อ - สกุล</span>
+              <p id="txtFullname">{{cardFullName || '-'}}</p>
+              <span>วันเกิด</span>
+              <p id="txtBirthdate">{{cardBirthDate || '-'}}</p>
+              <h4 style="text-align: right">**ข้อมูลจากเครื่องอ่านบัตรประชาชน</h4>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class='gold'>
+              <h1>ข้อมูลโรงพยาบาล</h1>
+              <p id="txtHISHn"><span>HN </span> : {{hisHn || '-'}}</p>
+              <p id="txtHISPttype"><span>สิทธิการรักษา </span> : {{hisPttype || '-'}}</p>
+              <span>ชื่อ - สกุล</span>
+              <p id="txtHISFullname">{{hisFullName || '-'}}</p>
+              <span>วันเกิด</span>
+              <p id="txtHISBirthdate">{{hisBirthDate || '-'}}</p>
+              <!-- <h4 style="text-align: right">**จากฐานข้อมูลในโรงพยาบาล</h4> -->
+            </div>
+          </div>
+          <div class="col-4">
+            <div class='silver'>
+              <h1>ข้อมูลสิทธิการรักษา</h1>
+              <span>สิทธิการรักษา</span>
+              <p id="txtNHSORight">{{rightName || '-'}}</p>
+              <span>วันที่เริ่มใช้สิทธิ์</span>
+              <p id="txtNHSOStartDart">{{rightStartDate || '-'}}</p>
+              <span>หน่วยบริการหลัก</span>
+              <p id="txtNHSOHmain">{{rightHospital || '-'}}</p>
+              <h4 style="text-align: right">**สำนักงานหลักประกันสุขภาพแห่งชาติ</h4>
+            </div>
+          </div>
+        </div>
+        <div style="margin: 20px;"></div>
+        <div class="row">
+          <div class="col-5">
+            <div class='silver'>
+              <h1>ข้อมูลได้รับวัคซีน</h1>
+              <span>เข็มที่ 1 </span>
+              <p id="vaccine_history_1">วัคซีน : {{vaccine_history_1 || '-'}} | วันที่ฉีด: {{vaccine_date_1 || '-'}} |
+                สถานที่ : {{vaccine_place_1 || '-'}}</p>
+              <span>เข็มที่ 2</span>
+              <p id="vaccine_history_2">วัคซีน : {{vaccine_history_2 || '-'}} | วันที่ฉีด: {{vaccine_date_2 || '-'}} |
+                สถานที่ : {{vaccine_place_2 || '-'}}</p>
+              <span>เข็มที่ 3</span>
+              <p id="vaccine_history_3">วัคซีน : {{vaccine_history_3 || '-'}} | วันที่ฉีด: {{vaccine_date_3 || '-'}} |
+                สถานที่ : {{vaccine_place_3 || '-'}}</p>
+              <span>เข็มที่ 4</span>
+              <p id="vaccine_history_4">วัคซีน : {{vaccine_history_4 || '-'}} | วันที่ฉีด: {{vaccine_date_4 || '-'}} |
+                สถานที่ : {{vaccine_place_4 || '-'}}</p>
+              <!-- <h4 style="text-align: right">**สำนักงานหลักประกันสุขภาพแห่งชาติ</h4> -->
+            </div>
+          </div>
+          <div class="col-4">
+            <div class='silver'>
+              <h1>ข้อมูลตรวจ Lab ล่าสุด</h1>
+              <span>ชื่อ Lab</span>
+              <p id="lab_name">{{lab_name || '-'}}</p>
+              <span>ผลตรวจ</span>
+              <p id="lab_result">{{lab_result || '-'}}</p>
+              <span>วันที่ตรวจ</span>
+              <p id="report_datetime">{{report_datetime || '-'}} </p>
+              <span>โรงพยาบาล</span>
+              <p id="hospital_name">{{hospital_name || '-'}}</p>
+            </div>
+          </div>
+
+          <div class="col-3">
+
+            <button type="button" class="button-black" style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
+            (click)="openPriority()"><span *ngIf="!priority_name">เลือกประเภทผู้รับบริการ </span><span
+              *ngIf="priority_name">ผู้รับบริการ {{priority_name}}</span></button>
+    
+          <div style="margin: 20px;"></div>
+    
+          <button *ngIf="btnSelectServicePoint" type="button" class="btn btn-primary"
+            style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
+            (click)="onSelectServicePointList()">เลือกแผนกเข้ารับบริการ</button>
+    
+    
+          </div>
         </div>
       </div>
-      <!-- <div class="col-2">
+      <!-- <div style="margin: 20px;"></div> -->
 
-      </div>   -->
-      <div class="col-5">
-        <div class='silver'>
-          <h1>ข้อมูลตรวจ Lab ล่าสุด</h1>
-          <span>ชื่อ Lab</span>
-          <p id="lab_name">{{lab_name || '-'}}</p>
-          <span>ผลตรวจ</span>
-          <p id="lab_result">{{lab_result || '-'}}</p>
-          <span>วันที่ตรวจ</span>
-          <p id="report_datetime">{{report_datetime || '-'}} </p>
-          <span>โรงพยาบาล</span>
-          <p id="hospital_name">{{hospital_name || '-'}}</p>
-        </div>
-      </div>  
-      <!-- </div> -->
-    </div>
-
-      <div style="margin: 20px;"></div>
-
-      <button type="button" class="button-black" style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
-        (click)="openPriority()"><span *ngIf="!priority_name">เลือกประเภทผู้รับบริการ </span><span
-          *ngIf="priority_name">ผู้รับบริการ {{priority_name}}</span></button>
-
-      <div style="margin: 20px;"></div>
-
-      <button *ngIf="btnSelectServicePoint" type="button" class="btn btn-primary"
-        style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
-        (click)="onSelectServicePointList()">เลือกแผนกเข้ารับบริการ</button>
-
-    </div>
 
     <div id="divDepartment" *ngIf="tabServicePoint">
       <div style="margin: 20px;"></div>
@@ -129,8 +132,6 @@
 
       </div>
     </div>
-
-
   </div>
 </div>
 <app-modal-select-priority #mdlSelectPriority (onSelected)="onSelectedPriority($event)">

@@ -4,6 +4,11 @@
   background: #ecf0f1;
   height: 100vh;
 }
+.card-inverse-primary {
+  background: rgba(182, 109, 255, 0.2);
+  border: 1px solid #a764eb;
+  color: #212529;
+}
 
 .silver {
   padding: 10px 10px 10px 10px;
