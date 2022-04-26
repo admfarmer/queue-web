@@ -176,7 +176,7 @@ export class KioskService {
 
   async selectVac(cid: any) {
     // console.log(cid);
-    const _url = `http://203.157.166.100/api/ubonprompt/ImmunizationTarget/person?cid=${cid}`;
+    const _url = `http://mis.phoubon.in.th/api/ubonprompt/ImmunizationTarget/person?cid=${cid}`;
     let _httpOptions = {};
       _httpOptions = {
         headers: new HttpHeaders({
