@@ -452,9 +452,10 @@ export class MainComponent implements OnInit {
     try {
       const rs: any = await this.kioskService.getLocalNhso();
 
-      this.rightName = rs.mainInscl ? `(${rs.maininscl})` : '-';
+
+      this.rightName = rs.mainInscl ? `(${rs.mainInscl})` : '-';
       this.rightHospital = rs.hospMain.hname ? `(${rs.hospMain.hcode}) (${rs.hospMain.hname})` : '-';
-      this.rightStartDate = rs.transDate ? `${moment(rs.startDateTime, 'YYYYMMDD').format('DD MMM ')} ${moment(rs.startDateTime, 'YYYYMMDD').get('year')}` : '-';
+      this.rightStartDate = rs.transDate ? `${moment(rs.transDate, 'YYYYMMDD').format('DD MMM ')} ${moment(rs.transDate, 'YYYYMMDD').get('year')}` : '-';
     } catch (error) {
       console.log(error);
       // this.alertService.error(error.message);
