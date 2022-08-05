@@ -261,7 +261,8 @@ export class MainComponent implements OnInit {
     this.cardBirthDate = data.birthDate;
     if (this.cardCid) {
       await this.getPatient();
-      await this.getNhso(this.cardCid);
+      // await this.getNhso(this.cardCid);
+      await this.getLocalNhso();
       await this.insertVaccine(this.cardCid);
       await this.getVaccine(this.cardCid);
 
@@ -447,6 +448,19 @@ export class MainComponent implements OnInit {
     }
   }
 
+  async getLocalNhso(){
+    try {
+      const rs: any = await this.kioskService.getLocalNhso();
+
+      this.rightName = rs.mainInscl ? `(${rs.maininscl})` : '-';
+      this.rightHospital = rs.hospMain.hname ? `(${rs.hospMain.hcode}) (${rs.hospMain.hname})` : '-';
+      this.rightStartDate = rs.transDate ? `${moment(rs.startDateTime, 'YYYYMMDD').format('DD MMM ')} ${moment(rs.startDateTime, 'YYYYMMDD').get('year')}` : '-';
+    } catch (error) {
+      console.log(error);
+      // this.alertService.error(error.message);
+    }
+  }
+
   home() {
     this.router.navigate(['/admin/setting-kiosk']);
 
@@ -455,6 +469,7 @@ export class MainComponent implements OnInit {
   openPriority() {
     // this.patientName = `${visit.first_name} ${visit.last_name} (${visit.hn})`;
     // this.selectedVisit = visit;
+    this.priority_name = 'ปกติ';
     this.mdlSelectPriority.open();
   }
 
