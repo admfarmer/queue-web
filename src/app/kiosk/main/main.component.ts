@@ -455,7 +455,7 @@ export class MainComponent implements OnInit {
 
       this.rightName = rs.mainInscl ? `(${rs.mainInscl})` : '-';
       this.rightHospital = rs.hospMain.hname ? `(${rs.hospMain.hcode}) (${rs.hospMain.hname})` : '-';
-      this.rightStartDate = rs.transDate ? `${moment(rs.transDate, 'YYYYMMDD').format('DD MMM ')} ${moment(rs.transDate, 'YYYYMMDD').get('year')}` : '-';
+      this.rightStartDate = rs.startDateTime ? `${moment(rs.startDateTime, 'YYYYMMDD').format('DD MMM ')} ${moment(rs.startDateTime, 'YYYYMMDD').get('year')}` : '-';
     } catch (error) {
       console.log(error);
       // this.alertService.error(error.message);
