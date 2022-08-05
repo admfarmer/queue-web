@@ -8,7 +8,7 @@ export class KioskService {
 
   token: any;
   httpOptions: any;
-  constructor(@Inject('API_URL') private apiUrl: string,@Inject('API_URL_REPORT') private apiUrlReport: string, private httpClient: HttpClient) {
+  constructor(@Inject('API_URL') private apiUrl: string,@Inject('API_URL_REPORT') private apiUrlReport: string,@Inject('API_URL_NHSO') private apiUrlNhso: string, private httpClient: HttpClient) {
     this.token = sessionStorage.getItem('token');
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -91,7 +91,7 @@ export class KioskService {
   }
 
   async getPatient(token: any = null, data) {
-    const _url = `${this.apiUrl}/kiosk/patient/info`;
+    const _url = `${this.apiUrlNhso}/kiosk/patient/info`;
     let _httpOptions = {};
     if (token) {
       _httpOptions = {
