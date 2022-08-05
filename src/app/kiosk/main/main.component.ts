@@ -450,11 +450,18 @@ export class MainComponent implements OnInit {
 
   async getLocalNhso(){
     try {
+      let hosName:any;
       const rs: any = await this.kioskService.getLocalNhso();
-
+      console.log(rs.startDateTime);
+      
+      if(rs.hospMain){
+        hosName = rs.hospMain.hname;
+      }else{
+        hosName = null;
+      }
 
       this.rightName = rs.mainInscl ? `(${rs.mainInscl})` : '-';
-      this.rightHospital = rs.hospMain.hname ? `(${rs.hospMain.hcode}) (${rs.hospMain.hname})` : '-';
+      this.rightHospital = hosName ? `(${rs.hospMain.hcode}) (${rs.hospMain.hname})` : '-';
       this.rightStartDate = rs.startDateTime ? `${moment(rs.startDateTime, 'YYYYMMDD').format('DD MMM ')} ${moment(rs.startDateTime, 'YYYYMMDD').get('year')}` : '-';
     } catch (error) {
       console.log(error);
