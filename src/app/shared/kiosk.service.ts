@@ -190,12 +190,12 @@ export class KioskService {
 
   async selectVac(cid: any) {
     // console.log(cid);
-    const _url = `http://mis.phoubon.in.th/api/ubonprompt/ImmunizationTarget/person?cid=${cid}`;
+    const _url = `http://tscenter.moph.go.th/api/ubonprompt/ImmunizationTarget/person?cid=${cid}`;
     let _httpOptions = {};
       _httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // 'Authorization': 'Bearer ' + token
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJ1Ym9ucHJvbXB0IiwiaWF0IjoxNjU0MTQxNjQxLCJleHAiOjE5Njk3MTc2NDF9.l_RAWDh7JrEd2QCd4g1NvpdDVApuB4avkIC6R_aNreM'
         })
       };
  
