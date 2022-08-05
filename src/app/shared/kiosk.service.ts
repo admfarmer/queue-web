@@ -91,7 +91,7 @@ export class KioskService {
   }
 
   async getPatient(token: any = null, data) {
-    const _url = `${this.apiUrlNhso}/kiosk/patient/info`;
+    const _url = `${this.apiUrl}/kiosk/patient/info`;
     let _httpOptions = {};
     if (token) {
       _httpOptions = {
@@ -123,7 +123,7 @@ export class KioskService {
   }
 
   async getLocalNhso() {
-    const _url = `${this.apiUrl}/read?readImageFlag=false`;
+    const _url = `${this.apiUrlNhso}/read?readImageFlag=false`;
     let _httpOptions = {};
       _httpOptions = {
         headers: new HttpHeaders({
