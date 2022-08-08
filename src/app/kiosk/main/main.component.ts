@@ -56,16 +56,28 @@ export class MainComponent implements OnInit {
   vaccine_history_2: any;
   vaccine_history_3: any;
   vaccine_history_4: any;
+  vaccine_history_5: any;
+  vaccine_history_6: any;
+  vaccine_history_7: any;
+  vaccine_history_8: any;
 
   vaccine_date_1: any;
   vaccine_date_2: any;
   vaccine_date_3: any;
   vaccine_date_4: any;
+  vaccine_date_5: any;
+  vaccine_date_6: any;
+  vaccine_date_7: any;
+  vaccine_date_8: any;
 
   vaccine_place_1: any;
   vaccine_place_2: any;
   vaccine_place_3: any;
   vaccine_place_4: any;
+  vaccine_place_5: any;
+  vaccine_place_6: any;
+  vaccine_place_7: any;
+  vaccine_place_8: any;
 
 
   lab_name: any;
@@ -314,16 +326,28 @@ export class MainComponent implements OnInit {
     this.vaccine_history_2 = '';
     this.vaccine_history_3 = '';
     this.vaccine_history_4 = '';
+    this.vaccine_history_5 = '';
+    this.vaccine_history_6 = '';
+    this.vaccine_history_7 = '';
+    this.vaccine_history_8 = '';
  
     this.vaccine_date_1 = '';
     this.vaccine_date_2 = '';
     this.vaccine_date_3 = '';
     this.vaccine_date_4 = '';
+    this.vaccine_date_5 = '';
+    this.vaccine_date_6 = '';
+    this.vaccine_date_7 = '';
+    this.vaccine_date_8 = '';
 
     this.vaccine_place_1 = '';
     this.vaccine_place_2 = '';
     this.vaccine_place_3 = '';
     this.vaccine_place_4 = '';
+    this.vaccine_place_5 = '';
+    this.vaccine_place_6 = '';
+    this.vaccine_place_7 = '';
+    this.vaccine_place_8 = '';
 
     this.lab_name = '';
     this.lab_result = '';
@@ -530,7 +554,27 @@ export class MainComponent implements OnInit {
             this.vaccine_date_4 = info.vaccine_certificate[0].vaccination_list[3].vaccine_date
             this.vaccine_place_4 = info.vaccine_certificate[0].vaccination_list[3].vaccine_place
           }
-  
+          if(info.vaccine_certificate[0].vaccination_list[4]){
+            this.vaccine_history_5 = info.vaccine_certificate[0].vaccination_list[4].vaccine_name
+            this.vaccine_date_5 = info.vaccine_certificate[0].vaccination_list[4].vaccine_date
+            this.vaccine_place_5 = info.vaccine_certificate[0].vaccination_list[4].vaccine_place
+          }
+          if(info.vaccine_certificate[0].vaccination_list[5]){
+            this.vaccine_history_6 = info.vaccine_certificate[0].vaccination_list[5].vaccine_name
+            this.vaccine_date_6 = info.vaccine_certificate[0].vaccination_list[5].vaccine_date
+            this.vaccine_place_6 = info.vaccine_certificate[0].vaccination_list[5].vaccine_place
+          }
+          if(info.vaccine_certificate[0].vaccination_list[6]){
+            this.vaccine_history_7 = info.vaccine_certificate[0].vaccination_list[6].vaccine_name
+            this.vaccine_date_7 = info.vaccine_certificate[0].vaccination_list[6].vaccine_date
+            this.vaccine_place_7 = info.vaccine_certificate[0].vaccination_list[6].vaccine_place
+          }
+          if(info.vaccine_certificate[0].vaccination_list[7]){
+            this.vaccine_history_8 = info.vaccine_certificate[0].vaccination_list[7].vaccine_name
+            this.vaccine_date_8 = info.vaccine_certificate[0].vaccination_list[7].vaccine_date
+            this.vaccine_place_8 = info.vaccine_certificate[0].vaccination_list[7].vaccine_place
+          }
+
         }
 
         if(info.lab_test_results[0]){
