@@ -106,6 +106,22 @@ export class KioskService {
     return this.httpClient.post(_url, data, _httpOptions).toPromise();
   }
 
+  async getPttypte(token: any = null, data) {
+    const _url = `${this.apiUrl}/kiosk/saveKiosPttype`;
+    let _httpOptions = {};
+    if (token) {
+      _httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        })
+      };
+    } else {
+      _httpOptions = this.httpOptions;
+    }
+    return this.httpClient.post(_url, data, _httpOptions).toPromise();
+  }
+
   async getNhso(token, data) {
     const _url = `${this.apiUrl}/kiosk/nhso`;
     let _httpOptions = {};
@@ -134,6 +150,20 @@ export class KioskService {
       };
 
     return this.httpClient.get(_url,_httpOptions).toPromise();
+  }
+
+  async getLocalNhsoConfirmSave(datas:any) {
+    const _url = `${this.apiUrlNhso}/confirm-save`;
+    let _httpOptions = {};
+      _httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          "Accept" : "/",
+          // 'Authorization': 'Bearer ' + token
+        })
+      };
+
+    return this.httpClient.post(_url,datas,_httpOptions).toPromise();
   }
 
   async sendAPITRIGGER(token, type, url, hn, cid, localCode, servicePointId) {
@@ -198,13 +228,13 @@ export class KioskService {
           'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJ1Ym9ucHJvbXB0IiwiaWF0IjoxNjU0MTQxNjQxLCJleHAiOjE5Njk3MTc2NDF9.l_RAWDh7JrEd2QCd4g1NvpdDVApuB4avkIC6R_aNreM'
         })
       };
- 
+
     return this.httpClient.get(_url,_httpOptions).toPromise();
   }
 
   async insertVac(cid: any) {
     console.log(this.apiUrlReport);
-    
+
     // console.log(cid);
     const _url = `${this.apiUrlReport}/covid_vaccine/mophic-lab/${cid}`;
     let _httpOptions = {};
@@ -214,7 +244,7 @@ export class KioskService {
           // 'Authorization': 'Bearer ' + token
         })
       };
- 
+
     return this.httpClient.get(_url,_httpOptions).toPromise();
   }
 }

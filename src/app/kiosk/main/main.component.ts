@@ -1,6 +1,6 @@
 import { KioskService } from './../../shared/kiosk.service';
 import { AlertService } from 'src/app/shared/alert.service';
-import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild ,Inject} from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as mqttClient from '../../../vendor/mqtt';
@@ -17,6 +17,7 @@ import { ModalSelectPriorityComponent } from 'src/app/shared/modal-select-priori
 })
 export class MainComponent implements OnInit {
   @ViewChild('mdlSelectPriority') mdlSelectPriority: ModalSelectPriorityComponent;
+  @Inject('API_HCODE') private apiHCode: string;
   priority_id: any;
   priority_name: string;
   jwtHelper = new JwtHelperService();
@@ -84,6 +85,17 @@ export class MainComponent implements OnInit {
   lab_result: any;
   report_datetime: any;
   hospital_name: any;
+
+
+  pid:any;
+  claimType:any;
+  hisMobile:any;
+  correlationId:any;
+  // hcode:any = this.apiHCode;
+
+  item_claimType:any;
+
+  item_read:any;
 
   @ViewChild(CountdownComponent) counter: CountdownComponent;
 
@@ -287,6 +299,7 @@ export class MainComponent implements OnInit {
   async setDataFromHIS(data) {
     this.his = data;
     this.hisHn = data.hn;
+    this.hisMobile = data.hometel.replace('-', '');
     this.hisPttype = data.namepttype;
     this.hisFullName = `${data.title}${data.firstName} ${data.lastName}`;
     this.hisBirthDate = data.birthDate;
@@ -330,7 +343,7 @@ export class MainComponent implements OnInit {
     this.vaccine_history_6 = '';
     this.vaccine_history_7 = '';
     this.vaccine_history_8 = '';
- 
+
     this.vaccine_date_1 = '';
     this.vaccine_date_2 = '';
     this.vaccine_date_3 = '';
@@ -395,6 +408,33 @@ export class MainComponent implements OnInit {
       birthDate: this.his.engBirthDate,
       sex: this.his.sex
     };
+
+
+    const data_confirm:any = {
+      "pid": this.cardCid,
+      "claimType": this.claimType || 'PG0060001',
+      "mobile": this.hisMobile,
+      "correlationId": this.correlationId,
+      "hn": this.hisHn,
+      "hcode": this.apiHCode
+    }
+    if(this.hisMobile && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
+      const rs: any = await this.kioskService.getLocalNhsoConfirmSave(data_confirm);
+
+      const info_pttype:any = {
+        cid:this.cardCid,
+        json_data:this.item_read,
+        claimCode:rs.claimCode,
+        claimType:rs.claimType,
+        cln:servicePoint.local_code,
+        regist_date:moment().format('YYYY-MM-DD'),
+        regist_time:moment().format('HH:mm:ss')
+      }
+
+      const rs_info_pttype: any = await this.kioskService.getPttypte(this.token,info_pttype);
+
+    }
+
     // try {
     //   const rs: any = await this.kioskService.register(this.token, data);
     //   if (rs.statusCode === 200) {
@@ -477,16 +517,20 @@ export class MainComponent implements OnInit {
       let hosName:any;
       const rs: any = await this.kioskService.getLocalNhso();
       console.log(rs.startDateTime);
-      
+
       if(rs.hospMain){
         hosName = rs.hospMain.hname;
       }else{
         hosName = null;
       }
+      this.item_claimType = rs.claimTypes;
+      this.correlationId = rs.correlationId;
 
       this.rightName = rs.mainInscl ? `(${rs.mainInscl})` : '-';
       this.rightHospital = hosName ? `(${rs.hospMain.hcode}) (${rs.hospMain.hname})` : '-';
       this.rightStartDate = rs.startDateTime ? `${moment(rs.startDateTime, 'YYYYMMDD').format('DD MMM ')} ${moment(rs.startDateTime, 'YYYYMMDD').get('year')}` : '-';
+      this.item_read = rs;
+
     } catch (error) {
       console.log(error);
       // this.alertService.error(error.message);
@@ -514,11 +558,11 @@ export class MainComponent implements OnInit {
   }
 
   async insertVaccine(cid:any){
- 
+
     try {
       const rs_inserVac: any = await this.kioskService.insertVac(cid);
       // console.log(rs_inserVac);
-  
+
     } catch (error) {
       console.log(error);
     }
@@ -527,7 +571,7 @@ export class MainComponent implements OnInit {
 
   async getVaccine(cid:any){
 
-    try {  
+    try {
       const rs: any = await this.kioskService.selectVac(cid);
 
       console.log(rs);
@@ -590,7 +634,7 @@ export class MainComponent implements OnInit {
 
 
       }
-      
+
     } catch (error) {
       console.log(error);
     }

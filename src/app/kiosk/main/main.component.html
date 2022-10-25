@@ -45,6 +45,8 @@
               <p id="txtHISFullname">{{hisFullName || '-'}}</p>
               <span>วันเกิด</span>
               <p id="txtHISBirthdate">{{hisBirthDate || '-'}}</p>
+              <span>เบอร์โทร</span>
+              <p id="txtHISMobile">{{hisMobile || '-'}}</p>
               <!-- <h4 style="text-align: right">**จากฐานข้อมูลในโรงพยาบาล</h4> -->
             </div>
           </div>
@@ -78,12 +80,12 @@
               <span>เข็มที่ 4</span>
               <p id="vaccine_history_4">วัคซีน : {{vaccine_history_4 || '-'}} | วันที่ฉีด: {{vaccine_date_4 || '-'}} |
                 สถานที่ : {{vaccine_place_4 || '-'}}</p>
-              <span>เข็มที่ 5</span>
+              <!-- <span>เข็มที่ 5</span>
               <p id="vaccine_history_5">วัคซีน : {{vaccine_history_5 || '-'}} | วันที่ฉีด: {{vaccine_date_5 || '-'}} |
                 สถานที่ : {{vaccine_place_5 || '-'}}</p>
               <span>เข็มที่ 6</span>
               <p id="vaccine_history_6">วัคซีน : {{vaccine_history_6 || '-'}} | วันที่ฉีด: {{vaccine_date_6 || '-'}} |
-                สถานที่ : {{vaccine_place_6 || '-'}}</p>
+                สถานที่ : {{vaccine_place_6 || '-'}}</p> -->
               <!-- <span>เข็มที่ 7</span>
               <p id="vaccine_history_7">วัคซีน : {{vaccine_history_7 || '-'}} | วันที่ฉีด: {{vaccine_date_7 || '-'}} |
                 สถานที่ : {{vaccine_place_7 || '-'}}</p>
@@ -112,14 +114,14 @@
             <button type="button" class="button-black" style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
             (click)="openPriority()"><span *ngIf="!priority_name">เลือกประเภทผู้รับบริการ </span><span
               *ngIf="priority_name">ผู้รับบริการ {{priority_name}}</span></button>
-    
+
           <div style="margin: 20px;"></div>
-    
+
           <button *ngIf="btnSelectServicePoint" type="button" class="btn btn-primary"
             style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
             (click)="onSelectServicePointList()">เลือกแผนกเข้ารับบริการ</button>
-    
-    
+
+
           </div>
         </div>
       </div>
