@@ -479,6 +479,7 @@ export class MainComponent implements OnInit {
       try {
         const rs: any = await this.kioskService.getLocalNhsoConfirmSave(data_confirm);
         console.log('getLocalNhsoConfirmSave :',rs);
+
         const info_pttype:any = {
           cid:this.cardCid,
           json_data:this.item_read,
@@ -488,6 +489,8 @@ export class MainComponent implements OnInit {
           regist_date:moment().format('YYYY-MM-DD'),
           regist_time:moment().format('HH:mm:ss')
         }
+        console.log(info_pttype);
+
         if(rs.claimCode && rs.claimType){
           this.savePttypte(info_pttype);
         }
