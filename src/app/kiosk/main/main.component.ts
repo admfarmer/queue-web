@@ -482,7 +482,7 @@ export class MainComponent implements OnInit {
 
         const info_pttype:any = {
           cid:this.item_read.pid,
-          json_data: `${this.item_read}`,
+          json_data: JSON.stringify(this.item_read),
           claimCode:rs.claimCode,
           claimType:rs.claimType,
           cln:this.local_code,
