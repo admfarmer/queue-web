@@ -17,7 +17,6 @@ import { ModalSelectPriorityComponent } from 'src/app/shared/modal-select-priori
 })
 export class MainComponent implements OnInit {
   @ViewChild('mdlSelectPriority') mdlSelectPriority: ModalSelectPriorityComponent;
-  @Inject('API_HCODE') private apiHCode: string;
   priority_id: any;
   priority_name: string;
   jwtHelper = new JwtHelperService();
@@ -104,7 +103,8 @@ export class MainComponent implements OnInit {
     private alertService: AlertService,
     private kioskService: KioskService,
     private zone: NgZone,
-    private router: Router) {
+    private router: Router,
+    @Inject('API_HCODE') private apiHCode: string) {
     this.route.queryParams
       .subscribe(params => {
         this.token = params.token || null;
