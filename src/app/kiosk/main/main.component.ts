@@ -481,7 +481,7 @@ export class MainComponent implements OnInit {
         console.log('getLocalNhsoConfirmSave :',rs);
 
         const info_pttype:any = {
-          cid:this.cardCid,
+          cid:this.item_read.pid,
           json_data:this.item_read,
           claimCode:rs.claimCode,
           claimType:rs.claimType,
