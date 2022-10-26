@@ -4,5 +4,5 @@ export const environment = {
   // apiUrl: 'http://localhost:3003/v1',
   apiUrlReport: 'http://tscenter.moph.go.th/api/report/v1',
   apiUrlNhso: 'http://localhost:8189/api',
-  apiHCode: '10957',
+  apiHCode: '0000',
 };
