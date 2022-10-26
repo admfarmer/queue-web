@@ -421,28 +421,32 @@ export class MainComponent implements OnInit {
     if(this.hisMobile && this.correlationId && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
 
       console.log('data_confirm :',data_confirm);
-
-      const rs: any = await this.kioskService.getLocalNhsoConfirmSave(data_confirm);
-
-      console.log('getLocalNhsoConfirmSave :',rs);
-
-      if(rs.status != 200){
+      try {
+        const rs: any = await this.kioskService.getLocalNhsoConfirmSave(data_confirm);
+        console.log('getLocalNhsoConfirmSave :',rs);
+        const info_pttype:any = {
+          cid:this.cardCid,
+          json_data:this.item_read,
+          claimCode:rs.claimCode,
+          claimType:rs.claimType,
+          cln:servicePoint.local_code,
+          regist_date:moment().format('YYYY-MM-DD'),
+          regist_time:moment().format('HH:mm:ss')
+        }
+        if(rs.claimCode && rs.claimType){
+          try {
+            const rs_info_pttype: any = await this.kioskService.getPttypte(this.token,info_pttype);
+            console.log('getPttypte :',rs_info_pttype);
+            return true;
+          } catch (error) {
+            console.log(error.error);
+            return false;
+          }
+        }
+      } catch (error) {
+        console.log(error.error);
         return false;
       }
-
-      const info_pttype:any = {
-        cid:this.cardCid,
-        json_data:this.item_read,
-        claimCode:rs.claimCode,
-        claimType:rs.claimType,
-        cln:servicePoint.local_code,
-        regist_date:moment().format('YYYY-MM-DD'),
-        regist_time:moment().format('HH:mm:ss')
-      }
-      if(rs.claimCode && rs.claimType){
-        const rs_info_pttype: any = await this.kioskService.getPttypte(this.token,info_pttype);
-      }
-
     }
 
     // try {
