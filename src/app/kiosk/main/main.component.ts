@@ -326,6 +326,7 @@ export class MainComponent implements OnInit {
     this.hisBirthDate = '';
     this.hisFullName = '';
     this.hisHn = '';
+    this.hisMobile = '';
 
     this.rightName = '';
     this.rightStartDate = '';
