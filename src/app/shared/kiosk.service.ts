@@ -139,7 +139,7 @@ export class KioskService {
   }
 
   async getLocalNhso() {
-    const _url = `${this.apiUrlNhso}/read?readImageFlag=false`;
+    const _url = `${this.apiUrlNhso}/smartcard/read?readImageFlag=false`;
     let _httpOptions = {};
       _httpOptions = {
         headers: new HttpHeaders({
@@ -153,7 +153,7 @@ export class KioskService {
   }
 
   async getLocalNhsoConfirmSave(datas:any) {
-    const _url = `${this.apiUrlNhso}/confirm-save`;
+    const _url = `${this.apiUrlNhso}/nhso-service/confirm-save`;
     let _httpOptions = {};
       _httpOptions = {
         headers: new HttpHeaders({

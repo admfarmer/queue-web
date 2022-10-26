@@ -436,8 +436,9 @@ export class MainComponent implements OnInit {
         regist_date:moment().format('YYYY-MM-DD'),
         regist_time:moment().format('HH:mm:ss')
       }
-
-      const rs_info_pttype: any = await this.kioskService.getPttypte(this.token,info_pttype);
+      if(rs.claimCode && rs.claimType){
+        const rs_info_pttype: any = await this.kioskService.getPttypte(this.token,info_pttype);
+      }
 
     }
 
