@@ -426,6 +426,9 @@ export class MainComponent implements OnInit {
 
       console.log('getLocalNhsoConfirmSave :',rs);
 
+      if(rs.status != 200){
+        return false;
+      }
 
       const info_pttype:any = {
         cid:this.cardCid,
