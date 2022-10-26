@@ -413,13 +413,19 @@ export class MainComponent implements OnInit {
     const data_confirm:any = {
       "pid": this.cardCid,
       "claimType": this.claimType || 'PG0060001',
-      "mobile": this.hisMobile,
-      "correlationId": this.correlationId,
-      "hn": this.hisHn,
-      "hcode": this.apiHCode
+      "mobile": `${this.hisMobile}`,
+      "correlationId": `${this.correlationId}`,
+      "hn": `${this.hisHn}`,
+      "hcode": `${this.apiHCode}`
     }
-    if(this.hisMobile && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
+    if(this.hisMobile && this.correlationId && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
+
+      console.log('data_confirm :',data_confirm);
+
       const rs: any = await this.kioskService.getLocalNhsoConfirmSave(data_confirm);
+
+      console.log('getLocalNhsoConfirmSave :',rs);
+
 
       const info_pttype:any = {
         cid:this.cardCid,
