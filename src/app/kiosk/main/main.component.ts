@@ -91,6 +91,7 @@ export class MainComponent implements OnInit {
   hisMobile:any;
   correlationId:any;
   // hcode:any = this.apiHCode;
+  local_code:any;
 
   item_claimType:any;
 
@@ -408,46 +409,8 @@ export class MainComponent implements OnInit {
       birthDate: this.his.engBirthDate,
       sex: this.his.sex
     };
-
-
-    const data_confirm:any = {
-      "pid": this.cardCid,
-      "claimType": this.claimType || 'PG0060001',
-      "mobile": `${this.hisMobile}`,
-      "correlationId": `${this.correlationId}`,
-      "hn": `${this.hisHn}`,
-      "hcode": `${this.apiHCode}`
-    }
-    if(this.hisMobile && this.correlationId && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
-
-      console.log('data_confirm :',data_confirm);
-      try {
-        const rs: any = await this.kioskService.getLocalNhsoConfirmSave(data_confirm);
-        console.log('getLocalNhsoConfirmSave :',rs);
-        const info_pttype:any = {
-          cid:this.cardCid,
-          json_data:this.item_read,
-          claimCode:rs.claimCode,
-          claimType:rs.claimType,
-          cln:servicePoint.local_code,
-          regist_date:moment().format('YYYY-MM-DD'),
-          regist_time:moment().format('HH:mm:ss')
-        }
-        if(rs.claimCode && rs.claimType){
-          try {
-            const rs_info_pttype: any = await this.kioskService.getPttypte(this.token,info_pttype);
-            console.log('getPttypte :',rs_info_pttype);
-            return true;
-          } catch (error) {
-            console.log(error.error);
-            return false;
-          }
-        }
-      } catch (error) {
-        console.log(error.error);
-        return false;
-      }
-    }
+    this.local_code = servicePoint.local_code;
+    this.confirmSave();
 
     // try {
     //   const rs: any = await this.kioskService.register(this.token, data);
@@ -501,6 +464,51 @@ export class MainComponent implements OnInit {
     }
   }
 
+  async confirmSave(){
+    const data_confirm:any = {
+      "pid": this.cardCid,
+      "claimType": this.claimType || 'PG0060001',
+      "mobile": `${this.hisMobile}`,
+      "correlationId": `${this.correlationId}`,
+      "hn": `${this.hisHn}`,
+      "hcode": `${this.apiHCode}`
+    }
+    if(this.hisMobile && this.correlationId && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
+
+      console.log('data_confirm :',data_confirm);
+      try {
+        const rs: any = await this.kioskService.getLocalNhsoConfirmSave(data_confirm);
+        console.log('getLocalNhsoConfirmSave :',rs);
+        const info_pttype:any = {
+          cid:this.cardCid,
+          json_data:this.item_read,
+          claimCode:rs.claimCode,
+          claimType:rs.claimType,
+          cln:this.local_code,
+          regist_date:moment().format('YYYY-MM-DD'),
+          regist_time:moment().format('HH:mm:ss')
+        }
+        if(rs.claimCode && rs.claimType){
+          this.savePttypte(info_pttype);
+        }
+      } catch (error) {
+        console.log(error.error);
+        return false;
+      }
+    }
+
+  }
+
+  async savePttypte(info_pttype:any){
+    try {
+      const rs_info_pttype: any = await this.kioskService.getPttypte(this.token,info_pttype);
+      console.log('getPttypte :',rs_info_pttype);
+      return true;
+    } catch (error) {
+      console.log(error.error);
+      return false;
+    }
+  }
   async getNhso(cid) {
     const nhsoToken = localStorage.getItem('nhsoToken');
     const nhsoCid = localStorage.getItem('nhsoCid');
