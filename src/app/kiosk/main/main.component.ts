@@ -288,8 +288,8 @@ export class MainComponent implements OnInit {
       await this.getPatient();
       // await this.getNhso(this.cardCid);
       await this.getLocalNhso();
-      await this.insertVaccine(this.cardCid);
-      await this.getVaccine(this.cardCid);
+      // await this.insertVaccine(this.cardCid);
+      // await this.getVaccine(this.cardCid);
 
     } else {
       this.alertService.error('บัตรมีปัญหา กรุณาเสียบใหม่อีกครั้ง', null, 1000);

@@ -47,7 +47,7 @@
               <p id="txtHISBirthdate">{{hisBirthDate || '-'}}</p>
               <span>เบอร์โทร</span>
               <p id="txtHISMobile">{{hisMobile || '-'}}</p>
-              <!-- <h4 style="text-align: right">**จากฐานข้อมูลในโรงพยาบาล</h4> -->
+              <h4 style="text-align: right">**จากฐานข้อมูลในโรงพยาบาล</h4>
             </div>
           </div>
           <div class="col-4">
@@ -65,63 +65,14 @@
         </div>
         <div style="margin: 20px;"></div>
         <div class="row">
-          <div class="col-5">
-            <div class='silver'>
-              <h1>ข้อมูลได้รับวัคซีน</h1>
-              <span>เข็มที่ 1 </span>
-              <p id="vaccine_history_1">วัคซีน : {{vaccine_history_1 || '-'}} | วันที่ฉีด: {{vaccine_date_1 || '-'}} |
-                สถานที่ : {{vaccine_place_1 || '-'}}</p>
-              <span>เข็มที่ 2</span>
-              <p id="vaccine_history_2">วัคซีน : {{vaccine_history_2 || '-'}} | วันที่ฉีด: {{vaccine_date_2 || '-'}} |
-                สถานที่ : {{vaccine_place_2 || '-'}}</p>
-              <span>เข็มที่ 3</span>
-              <p id="vaccine_history_3">วัคซีน : {{vaccine_history_3 || '-'}} | วันที่ฉีด: {{vaccine_date_3 || '-'}} |
-                สถานที่ : {{vaccine_place_3 || '-'}}</p>
-              <span>เข็มที่ 4</span>
-              <p id="vaccine_history_4">วัคซีน : {{vaccine_history_4 || '-'}} | วันที่ฉีด: {{vaccine_date_4 || '-'}} |
-                สถานที่ : {{vaccine_place_4 || '-'}}</p>
-              <!-- <span>เข็มที่ 5</span>
-              <p id="vaccine_history_5">วัคซีน : {{vaccine_history_5 || '-'}} | วันที่ฉีด: {{vaccine_date_5 || '-'}} |
-                สถานที่ : {{vaccine_place_5 || '-'}}</p>
-              <span>เข็มที่ 6</span>
-              <p id="vaccine_history_6">วัคซีน : {{vaccine_history_6 || '-'}} | วันที่ฉีด: {{vaccine_date_6 || '-'}} |
-                สถานที่ : {{vaccine_place_6 || '-'}}</p> -->
-              <!-- <span>เข็มที่ 7</span>
-              <p id="vaccine_history_7">วัคซีน : {{vaccine_history_7 || '-'}} | วันที่ฉีด: {{vaccine_date_7 || '-'}} |
-                สถานที่ : {{vaccine_place_7 || '-'}}</p>
-              <span>เข็มที่ 8</span>
-              <p id="vaccine_history_8">วัคซีน : {{vaccine_history_8 || '-'}} | วันที่ฉีด: {{vaccine_date_8 || '-'}} |
-                สถานที่ : {{vaccine_place_8 || '-'}}</p> -->
-              <!-- <h4 style="text-align: right">**สำนักงานหลักประกันสุขภาพแห่งชาติ</h4> -->
-            </div>
-          </div>
-          <div class="col-4">
-            <div class='silver'>
-              <h1>ข้อมูลตรวจ Lab ล่าสุด</h1>
-              <span>ชื่อ Lab</span>
-              <p id="lab_name">{{lab_name || '-'}}</p>
-              <span>ผลตรวจ</span>
-              <p id="lab_result">{{lab_result || '-'}}</p>
-              <span>วันที่ตรวจ</span>
-              <p id="report_datetime">{{report_datetime || '-'}} </p>
-              <span>โรงพยาบาล</span>
-              <p id="hospital_name">{{hospital_name || '-'}}</p>
-            </div>
-          </div>
-
           <div class="col-3">
-
             <button type="button" class="button-black" style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
             (click)="openPriority()"><span *ngIf="!priority_name">เลือกประเภทผู้รับบริการ </span><span
               *ngIf="priority_name">ผู้รับบริการ {{priority_name}}</span></button>
-
           <div style="margin: 20px;"></div>
-
           <button *ngIf="btnSelectServicePoint" type="button" class="btn btn-primary"
             style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
             (click)="onSelectServicePointList()">เลือกแผนกเข้ารับบริการ</button>
-
-
           </div>
         </div>
       </div>
