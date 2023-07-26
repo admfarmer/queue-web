@@ -65,7 +65,7 @@
         </div>
         <div style="margin: 20px;"></div>
         <div class="row">
-          <div class="col-3">
+          <div class="col-12">
             <button type="button" class="button-black" style="height: 6rem; font-size: 1.8em; display: block; margin: auto;"
             (click)="openPriority()"><span *ngIf="!priority_name">เลือกประเภทผู้รับบริการ </span><span
               *ngIf="priority_name">ผู้รับบริการ {{priority_name}}</span></button>
@@ -76,9 +76,8 @@
           </div>
         </div>
       </div>
-      <!-- <div style="margin: 20px;"></div> -->
-
-
+      <div style="margin: 20px;"></div>
+      
     <div id="divDepartment" *ngIf="tabServicePoint">
       <div style="margin: 20px;"></div>
       <h1>แผนกที่ต้องการเข้ารับบริการ</h1>
