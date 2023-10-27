@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
   priority_name: string;
   jwtHelper = new JwtHelperService();
   hn: any;
+  vn: any;
   tabServicePoint = false;
   btnSelectServicePoint = false;
   tabProfile = true;
@@ -433,7 +434,8 @@ export class MainComponent implements OnInit {
     try {
 
       const ovst: any = await this.kioskService.regisOvst(this.token, data);
-      // console.log(ovst);
+      console.log(ovst);
+      this.vn = ovst.ovst[0]
 
       if (ovst.info != 'NO') {
         const rs: any = await this.kioskService.register(this.token, data);
@@ -487,6 +489,7 @@ export class MainComponent implements OnInit {
           claimCode:rs.claimCode,
           claimType:rs.claimType,
           cln:this.local_code,
+          vn:this.vn,
           regist_date:moment().format('YYYY-MM-DD'),
           regist_time:moment().format('HH:mm:ss')
         }
