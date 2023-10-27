@@ -434,7 +434,7 @@ export class MainComponent implements OnInit {
     try {
 
       const ovst: any = await this.kioskService.regisOvst(this.token, data);
-      console.log(ovst);
+      console.log('ovst : ',ovst);
       this.vn = ovst.ovst[0]
 
       if (ovst.info != 'NO') {
@@ -493,7 +493,7 @@ export class MainComponent implements OnInit {
           regist_date:moment().format('YYYY-MM-DD'),
           regist_time:moment().format('HH:mm:ss')
         }
-        console.log(info_pttype);
+        console.log('info_pttype :',info_pttype);
 
         if(rs.claimCode && rs.claimType){
           this.savePttypte(info_pttype);
