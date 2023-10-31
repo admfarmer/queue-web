@@ -399,6 +399,7 @@ export class MainComponent implements OnInit {
     const priorityId = this.priority_id || localStorage.getItem('kiosDefaultPriority');
     const data = {
       hn: this.his.hn,
+      vn1: '',
       vn: 'K' + moment().format('x'),
       clinicCode: servicePoint.local_code,
       priorityId: priorityId,
@@ -436,6 +437,7 @@ export class MainComponent implements OnInit {
       const ovst: any = await this.kioskService.regisOvst(this.token, data);
       console.log('ovst : ',ovst);
       this.vn = ovst.ovst[0]
+      data.vn1 = ovst.ovst[0];
 
       if (ovst.info != 'NO') {
         const rs: any = await this.kioskService.register(this.token, data);
