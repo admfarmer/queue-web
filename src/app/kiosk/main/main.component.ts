@@ -397,9 +397,8 @@ export class MainComponent implements OnInit {
   async register(servicePoint) {
     this.isPrinting = true;
     const priorityId = this.priority_id || localStorage.getItem('kiosDefaultPriority');
-    const data = {
+    let data:any = {
       hn: this.his.hn,
-      vn1: '',
       vn: 'K' + moment().format('x'),
       clinicCode: servicePoint.local_code,
       priorityId: priorityId,
