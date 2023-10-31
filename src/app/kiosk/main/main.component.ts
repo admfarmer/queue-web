@@ -17,8 +17,8 @@ import { ModalSelectPriorityComponent } from 'src/app/shared/modal-select-priori
 })
 export class MainComponent implements OnInit {
   @ViewChild('mdlSelectPriority') mdlSelectPriority: ModalSelectPriorityComponent;
-  priority_id: any;
-  priority_name: string;
+  priority_id: any = 1;
+  priority_name: string = 'ปกติ';
   jwtHelper = new JwtHelperService();
   hn: any;
   vn: any;
