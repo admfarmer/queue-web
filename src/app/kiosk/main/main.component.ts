@@ -435,11 +435,11 @@ export class MainComponent implements OnInit {
 
       const ovst: any = await this.kioskService.regisOvst(this.token, data);
       console.log('ovst : ',ovst);
+      data.vn1 = await ovst.ovst[0];
       this.vn = await ovst.ovst[0];
+      console.log('data : ',data);
 
       if (ovst.info != 'NO') {
-        data.vn1 = await this.vn;
-
         const rs: any = await this.kioskService.register(this.token, data);
         // console.log(rs);
         if (rs.statusCode = 200) {
