@@ -581,7 +581,7 @@ export class MainComponent implements OnInit {
   }
 
   onSelectedPriority(priority: any) {
-    this.priority_id = priority.priority_id;
+    this.priority_id = priority.priority_id || 1;
     this.priority_name = priority.priority_name;
     console.log(priority);
 
