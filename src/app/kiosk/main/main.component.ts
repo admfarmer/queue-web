@@ -412,13 +412,14 @@ export class MainComponent implements OnInit {
     };
     this.local_code = servicePoint.local_code;
     if(this.hisMobile && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
-      this.confirmSave();
 
 
       try {
 
         const ovst: any = await this.kioskService.regisOvst(this.token, data);
+        let vn:any = ovst[0]
         // console.log(ovst);
+        this.confirmSave(vn);
 
         if (ovst.info != 'NO') {
           const rs: any = await this.kioskService.register(this.token, data);
@@ -455,7 +456,7 @@ export class MainComponent implements OnInit {
     }
   }
 
-  async confirmSave(){
+  async confirmSave(vn:any){
     const data_confirm:any = {
       "pid": this.cardCid,
       "claimType": this.claimType || 'PG0060001',
@@ -472,6 +473,7 @@ export class MainComponent implements OnInit {
         console.log('getLocalNhsoConfirmSave :',rs);
 
         const info_pttype:any = {
+          vn:vn,
           cid:this.item_read.pid,
           json_data: JSON.stringify(this.item_read),
           claimCode:rs.claimCode,
