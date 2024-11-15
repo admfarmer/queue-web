@@ -417,7 +417,7 @@ export class MainComponent implements OnInit {
       try {
 
         const ovst: any = await this.kioskService.regisOvst(this.token, data);
-        let vn:any = ovst[0]
+        let vn:any = ovst.ovst[0]
         console.log(ovst);
         this.confirmSave(vn);
 
