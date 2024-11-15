@@ -17,11 +17,10 @@ import { ModalSelectPriorityComponent } from 'src/app/shared/modal-select-priori
 })
 export class MainComponent implements OnInit {
   @ViewChild('mdlSelectPriority') mdlSelectPriority: ModalSelectPriorityComponent;
-  priority_id: any = 1;
-  priority_name: string = 'ปกติ';
+  priority_id: any;
+  priority_name: string;
   jwtHelper = new JwtHelperService();
   hn: any;
-  vn: any;
   tabServicePoint = false;
   btnSelectServicePoint = false;
   tabProfile = true;
@@ -289,8 +288,8 @@ export class MainComponent implements OnInit {
       await this.getPatient();
       // await this.getNhso(this.cardCid);
       await this.getLocalNhso();
-      // await this.insertVaccine(this.cardCid);
-      // await this.getVaccine(this.cardCid);
+      await this.insertVaccine(this.cardCid);
+      await this.getVaccine(this.cardCid);
 
     } else {
       this.alertService.error('บัตรมีปัญหา กรุณาเสียบใหม่อีกครั้ง', null, 1000);
@@ -397,7 +396,7 @@ export class MainComponent implements OnInit {
   async register(servicePoint) {
     this.isPrinting = true;
     const priorityId = this.priority_id || localStorage.getItem('kiosDefaultPriority');
-    let data:any = {
+    const data = {
       hn: this.his.hn,
       vn: 'K' + moment().format('x'),
       clinicCode: servicePoint.local_code,
@@ -412,60 +411,47 @@ export class MainComponent implements OnInit {
       sex: this.his.sex
     };
     this.local_code = servicePoint.local_code;
-    this.confirmSave();
+    if(this.hisMobile && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
+      this.confirmSave();
 
-    // try {
-    //   const rs: any = await this.kioskService.register(this.token, data);
-    //   if (rs.statusCode === 200) {
-    //     if (rs.queueId) {
-    //       await this.print(rs.queueId);
-    //       this.clearData();
-    //     }
-    //   } else {
-    //     this.alertService.error('ไม่สามารถลงทะเบียนได้');
-    //     this.isPrinting = false;
-    //   }
 
-    // } catch (error) {
-    //   this.isPrinting = false;
-    //   console.log(error);
-    // }
+      try {
 
-    try {
+        const ovst: any = await this.kioskService.regisOvst(this.token, data);
+        // console.log(ovst);
 
-      const ovst: any = await this.kioskService.regisOvst(this.token, data);
-      console.log('ovst : ',ovst);
-      data.vn1 = await ovst.ovst[0];
-      this.vn = await ovst.ovst[0];
-      console.log('data : ',data);
-
-      if (ovst.info != 'NO') {
-        const rs: any = await this.kioskService.register(this.token, data);
-        // console.log(rs);
-        if (rs.statusCode = 200) {
-          if (rs.queueId) {
-            await this.print(rs.queueId);
-            if (this.isSendAPIGET) {
-              await this.kioskService.sendAPITRIGGER(this.token, 'GET', this.urlSendAPIGET, this.his.hn, this.cardCid, servicePoint.local_code, servicePoint.service_point_id);
+        if (ovst.info != 'NO') {
+          const rs: any = await this.kioskService.register(this.token, data);
+          // console.log(rs);
+          if (rs.statusCode = 200) {
+            if (rs.queueId) {
+              await this.print(rs.queueId);
+              if (this.isSendAPIGET) {
+                await this.kioskService.sendAPITRIGGER(this.token, 'GET', this.urlSendAPIGET, this.his.hn, this.cardCid, servicePoint.local_code, servicePoint.service_point_id);
+              }
+              if (this.isSendAPIPOST) {
+                await this.kioskService.sendAPITRIGGER(this.token, 'POST', this.urlSendAPIPOST, this.his.hn, this.cardCid, servicePoint.local_code, servicePoint.service_point_id);
+              }
             }
-            if (this.isSendAPIPOST) {
-              await this.kioskService.sendAPITRIGGER(this.token, 'POST', this.urlSendAPIPOST, this.his.hn, this.cardCid, servicePoint.local_code, servicePoint.service_point_id);
-            }
+          } else {
+            this.alertService.error('ไม่สามารถลงทะเบียนได้');
+            this.isPrinting = false;
           }
+
         } else {
-          this.alertService.error('ไม่สามารถลงทะเบียนได้');
+          this.alertService.error('มีการลงทะเบียนในระบบแล้ว ');
           this.isPrinting = false;
         }
 
-      } else {
-        this.alertService.error('มีการลงทะเบียนในระบบแล้ว ');
+      } catch (error) {
         this.isPrinting = false;
+        console.log(error);
+        this.alertService.error('ไม่สามารถลงทะเบียนได้ ');
       }
-
-    } catch (error) {
+    }else{
       this.isPrinting = false;
-      console.log(error);
-      this.alertService.error('ไม่สามารถลงทะเบียนได้ ');
+      // console.log(error);
+      this.alertService.error('ไม่สามารถลงทะเบียนได้ กรุณาติดต้องห้องบัตร');
     }
   }
 
@@ -491,11 +477,10 @@ export class MainComponent implements OnInit {
           claimCode:rs.claimCode,
           claimType:rs.claimType,
           cln:this.local_code,
-          vn:this.vn,
           regist_date:moment().format('YYYY-MM-DD'),
           regist_time:moment().format('HH:mm:ss')
         }
-        console.log('info_pttype :',info_pttype);
+        console.log(info_pttype);
 
         if(rs.claimCode && rs.claimType){
           this.savePttypte(info_pttype);
@@ -581,7 +566,7 @@ export class MainComponent implements OnInit {
   }
 
   onSelectedPriority(priority: any) {
-    this.priority_id = priority.priority_id || 1;
+    this.priority_id = priority.priority_id;
     this.priority_name = priority.priority_name;
     console.log(priority);
 
