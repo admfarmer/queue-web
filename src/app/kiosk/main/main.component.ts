@@ -411,7 +411,7 @@ export class MainComponent implements OnInit {
       sex: this.his.sex
     };
     this.local_code = servicePoint.local_code;
-    if(this.hisMobile && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'){
+    if(this.hisMobile && this.hisMobile != 'ไม่มีเบอร์โทรศัพท์'&& this.hisMobile != 'ไม่มีเบอร์โทรศัพท'&& this.hisMobile != 'ไม่มี'&& this.hisMobile != 'ไม่มีเบอร์'){
 
 
       try {
